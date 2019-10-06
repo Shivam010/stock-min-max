@@ -380,7 +380,8 @@ func process(com string) *response {
 	if err != nil {
 		return &response{Error: err.Error()}
 	}
-	ctx, _ := context.WithTimeout(req.Context(), 1*time.Minute)
+	ctx, cancel := context.WithTimeout(req.Context(), 1*time.Minute)
+	defer cancel()
 	req.WithContext(ctx)
 
 	req.Header.Set("Content-Type", "application/json")

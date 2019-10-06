@@ -11,7 +11,7 @@ import (
 
 // Response Object
 type response struct {
-	Error string                 `json:"error"`
+	Error string      `json:"error"`
 	Data  interface{} `json:"data"`
 }
 

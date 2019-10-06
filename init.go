@@ -11,7 +11,7 @@ const (
 	resFormat = `{"error": "%v", "data": "%+v"}`
 	shortHand = " (short hand)"
 
-	defaultPort = "8080"
+	defaultPort = "80"
 	usagePort   = "PORT at which the server will run"
 )
 
@@ -25,8 +25,12 @@ var (
 )
 
 func init() {
-	flag.StringVar(&PORT, "port", defaultPort, usagePort)
-	flag.StringVar(&PORT, "p", defaultPort, usagePort+shortHand)
+	// Environment Variables values
+	PORT = os.Getenv("PORT")
+	if PORT == "" {
+		flag.StringVar(&PORT, "port", defaultPort, usagePort)
+		flag.StringVar(&PORT, "p", defaultPort, usagePort+shortHand)
+	}
 }
 
 // Is Debug mode - set or not
