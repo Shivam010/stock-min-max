@@ -38,6 +38,7 @@ type handler struct{}
 func (*handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if !strings.HasPrefix(r.URL.Path, "/api/v1") {
 		_return(w, &response{Error: "404 page not found"})
+		return
 	}
 	commodity := r.URL.Query().Get("commodity")
 	if commodity == "" {

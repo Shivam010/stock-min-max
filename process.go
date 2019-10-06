@@ -8,20 +8,21 @@ import (
 	"io/ioutil"
 	"math"
 	"net/http"
+	"strings"
 	"sync"
 	"time"
 )
 
 var (
-	commodities = map[string]bool{
-		"Gold":     true,
-		"Silver":   true,
-		"Copper":   true,
-		"Zinc":     true,
-		"Crudeoil": true,
-		"Cardamom": true,
-		"Cotton":   true,
-		"Lead":     true,
+	commodities = map[string]string{
+		"gold":     "Gold",
+		"silver":   "Silver",
+		"copper":   "Copper",
+		"zinc":     "Zinc",
+		"crudeoil": "Crudeoil",
+		"cardamom": "Cardamom",
+		"cotton":   "Cotton",
+		"lead":     "Lead",
 	}
 	endPoint = "https://www.mcxindia.com/BackPage.aspx/GetGraphForScrip"
 
@@ -371,7 +372,8 @@ func extract(b []byte) *response {
 
 func process(com string) *response {
 
-	if !commodities[com] {
+	com = commodities[strings.ToLower(com)]
+	if com == "" {
 		return &response{Error: "invalid commodity"}
 	}
 
