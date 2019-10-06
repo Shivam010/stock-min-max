@@ -1,0 +1,25 @@
+# Binaries for programs and plugins, and target directory
+bin
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Sample command files
+cmd.txt
+
+# Test binary, build with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# Different IDE files & directories
+.idea/
+.vscode/
+.vs/
+
+# OS specific files
+.DS_Store
+
